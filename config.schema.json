@@ -1,0 +1,78 @@
+{
+    "pluginAlias": "LoqedPlatform",
+    "pluginType": "platform",
+    "singular": true,
+    "schema": {
+        "type": "object",
+        "properties": {
+            "apiKey": {
+                "title": "API Key",
+                "type": "string",
+                "required": true
+            },
+            "apiToken": {
+                "title": "API Token",
+                "type": "string",
+                "required": true
+            },
+            "webhookPort": {
+                "title": "Webhook port",
+                "type": "number",
+                "required": false
+            },
+            "locks": {
+                "type": "array",
+                "minItems": 1,
+                "required": true,
+                "items": {
+                    "title": "Lock",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "type": "string",
+                            "required": true
+                        },
+                        "oldLockId": {
+                            "title": "Old Lock Id",
+                            "type": "number",
+                            "required": false
+                        },
+                        "lockId": {
+                            "title": "Lock Id",
+                            "type": "string",
+                            "required": false
+                        },
+                        "statePollingFrequencyInMinutes": {
+                            "title": "State polling frequency in minutes",
+                            "description": "Mainly for battery level",
+                            "type": "number",
+                            "required": false
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "form": [
+        "apiKey",
+        "apiToken",
+        "webhookPort",
+        {
+            "type": "fieldset",
+            "expandable": false,
+            "items": [
+                {
+                    "key": "locks",
+                    "type": "array",
+                    "items": [
+                        "locks[].name",
+                        "locks[].oldLockId",
+                        "locks[].lockId",
+                        "locks[].statePollingFrequencyInMinutes"
+                    ]
+                }
+            ]
+        }
+    ]
+}
